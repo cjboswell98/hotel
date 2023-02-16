@@ -1,0 +1,50 @@
+package co.grandcircus.hotel;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import co.grandcircus.hotel.repository.HotelRepository;
+
+@Controller
+public class HotelController {
+	
+	// Autowired tells spring to fill in the repo variable automatically
+	// when the application starts.
+	@Autowired
+	private HotelRepository repo;
+	
+	@RequestMapping("/")
+	public String index() {
+		return "home";
+	}
+	
+	// Each "form" requires 2 controllers
+	// One controller to display the form
+	@RequestMapping("/search-form")
+	public String showSearch() {
+		return "search";
+
+	}
+
+	// Another to handle the form submission...and display the results
+	@RequestMapping("/search-form-submit") // URL path matches form action
+	public String submitSearch(@RequestParam String name, @RequestParam String comment, @RequestParam int rate,
+			Model model) {
+		model.addAttribute("name", name);
+		model.addAttribute("comment", comment);
+		model.addAttribute("rate", rate);
+		return "search-results";
+	}
+
+	public HotelRepository getRepo() {
+		return repo;
+	}
+
+	public void setRepo(HotelRepository repo) {
+		this.repo = repo;
+	}
+}
+
