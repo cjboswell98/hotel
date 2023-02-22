@@ -8,8 +8,7 @@ import co.grandcircus.hotel.model.Hotel;
 
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
-	List<Hotel> findByAvailableIsTrueAndMaxCapacityGreaterThanEqual(
-			int neededCapacity);
+			public static final int neededCapacity = 0;
 
 	List<Hotel> findByAvailableIsTrue();
 

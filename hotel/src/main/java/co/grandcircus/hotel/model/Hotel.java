@@ -56,7 +56,7 @@ public class Hotel {
 		return price_per_night;
 	}
 
-	public void setAvailable(String price) {
+	public void setPrice(String price) {
 		this.price_per_night = price;
 	}
 
